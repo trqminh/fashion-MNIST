@@ -40,7 +40,8 @@ def main():
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
     # model = MyModel(num_classes=num_classes) # version 1
-    model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
+    # model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
+    model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version 3
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -50,7 +51,7 @@ def main():
     loss_list = []
     acc_list = []
 
-    epochs = 100
+    epochs = 10
     itr = 1
     p_itr = 1000
 
