@@ -85,7 +85,7 @@ Cross Entropy
 ### Accuracy on test set
 94.6685303514377 %
 
-##Usage
+## Usage
 #### Install libraries:
 ```
 pip install -r requirements.txt
@@ -98,8 +98,8 @@ pip3 install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch
 ```
 pip3 install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
 ```
-#### create data/ directory in repository 's root directory, put the csv file in (download from: )
-#### create trained_models/ directory in repository 's root directory and put the .pth file (download from here)
+#### create data/ directory in repository 's root directory, put the csv file in (download from [here](https://www.kaggle.com/zalando-research/fashionmnist))
+#### create trained_models/ directory in repository 's root directory and put the .pth file (download from [here](https://drive.google.com/open?id=1DuFkce3nhPN_43Wegst8Hwhvy1s_CzlO))
 #### Directory structure
 ```
 |-- data
