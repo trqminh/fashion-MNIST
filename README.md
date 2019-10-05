@@ -85,4 +85,49 @@ Cross Entropy
 ### Accuracy on test set
 94.6685303514377 %
 
+##Usage
+#### Install libraries:
+```
+pip install -r requirements.txt
+```
+#### Install pytorch-cpu:
+```
+pip3 install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
+```
+#### or install pytorch with cuda (if you have already install CUDA)
+```
+pip3 install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
+```
+#### create data/ directory in repository 's root directory, put the csv file in (download from: )
+#### create trained_models/ directory in repository 's root directory and put the .pth file (download from here)
+#### Directory structure
+```
+|-- data
+|   |-- fashion-mnist_test.csv
+|   |-- fashion-mnist_train.csv
+|-- models
+|   |-- __init__.py
+|   |-- my_model.py
+|   |-- wide_resnet.py
+|-- trained_models
+|   |-- version1_model.pth
+|   |-- version2_model.pth
+|   |-- version3_model.pth
+|-- utils
+|   |-- __init__.py
+|   |-- custom_data.py
+|-- .gitignore
+|-- README.md
+|-- requirements.txt
+|-- test.py
+|-- train.py
+```
+#### training
+```
+python train.py
+```
+#### test
+```
+python test.py
+```
 

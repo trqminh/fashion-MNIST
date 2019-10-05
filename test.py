@@ -30,8 +30,8 @@ def main():
     # model
     # model = MyModel(num_classes=10)  # version 1
     # model = EnsembleModel(num_classes=num_classes, num=10, device=device)  # version 2
-    model = WideResNet(depth=40, num_classes=10, widen_factor=4)  # version3
-    model.load_state_dict(torch.load('./trained_models/version3_model.pth'))
+    model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version3
+    model.load_state_dict(torch.load('./trained_models/version3_model.pth', map_location=device))
     model = model.to(device)
 
     model.eval()

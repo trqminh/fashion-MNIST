@@ -4,6 +4,7 @@ from torch.utils.data import DataLoader
 from utils import *
 from models import *
 import copy
+import time
 
 
 def accuracy(output, labels):
@@ -39,7 +40,7 @@ def main():
 
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-    # model = MyModel(num_classes=num_classes) # version 1
+    # model = MyModel(num_classes=num_classes)  # version 1
     # model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
     model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version 3
     model = model.to(device)
@@ -51,13 +52,14 @@ def main():
     loss_list = []
     acc_list = []
 
-    epochs = 10
+    epochs = 100
     itr = 1
     p_itr = 1000
 
     # start training
     best_model_wts = copy.deepcopy(model.state_dict())
     best_acc = 0.0
+    since = time.time()
 
     for epoch in range(epochs):
         model.train()
@@ -99,9 +101,11 @@ def main():
 
         print('-' * 10)
 
+    time_elapsed = time.time() - since
+    print('Training complete in {:.0f}m {:.0f}s'.format(time_elapsed // 60, time_elapsed % 60))
     print('best acc on test set: ', best_acc/len(test_loader))
     model.load_state_dict(best_model_wts)
-    torch.save(model.state_dict(), 'model3.pth')
+    torch.save(model.state_dict(), 'model.pth')
 
 
 if __name__ == '__main__':
