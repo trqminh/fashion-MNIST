@@ -22,5 +22,7 @@ Cross Entropy
 learning rate: 0.001
 activation: ReLU
 Dropout, BatchNorm
+Augment: random horizontal flip
 ### Accuracy on test set
+93.77%
 

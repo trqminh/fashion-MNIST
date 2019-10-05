@@ -39,7 +39,8 @@ def main():
 
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-    model = MyModel(num_classes=num_classes)
+    # model = MyModel(num_classes=num_classes) # version 1
+    model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)

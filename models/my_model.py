@@ -1,4 +1,5 @@
 import torch.nn as nn
+import torch
 
 
 class MyModel(nn.Module):
@@ -51,3 +52,19 @@ class MyModel(nn.Module):
         x = self.fc3(x)
 
         return x
+
+
+class EnsembleModel(nn.Module):
+    def __init__(self, num, num_classes, device):
+        super(EnsembleModel, self).__init__()
+        self.num_classes = num_classes
+        self.device = device
+        # you should use nn.ModuleList. Optimizer doesn't detect python list as parameters
+        self.models = nn.ModuleList([MyModel(num_classes).to(device) for _ in range(num)])
+
+    def forward(self, x):
+        # it is super simple. just forward num_ models and concat it.
+        output = torch.zeros([x.size(0), self.num_classes]).to(self.device)
+        for model in self.models:
+            output += model(x)
+        return output

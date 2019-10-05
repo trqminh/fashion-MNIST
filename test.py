@@ -28,8 +28,9 @@ def main():
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
     # model
-    model = MyModel(num_classes=10)
-    model.load_state_dict(torch.load('./trained_models/version1_model.pth'))
+    # model = MyModel(num_classes=10)  # version 1
+    model = EnsembleModel(num_classes=num_classes, num=10, device=device)  # version 2
+    model.load_state_dict(torch.load('./trained_models/version2_model.pth'))
     model = model.to(device)
 
     model.eval()
@@ -40,8 +41,8 @@ def main():
             output = model(samples)
             test_acc += accuracy(output, labels)
 
-    print('Accuracy of the network on {} test images: {}%'.format(len(test_dataset),
-                                                                  round(test_acc.item() * 100.0 / len(test_loader), 2)))
+    print('Accuracy of the network on {} test images: {} %'.format(len(test_dataset),
+                                                                   (test_acc.item() * 100.0 / len(test_loader))))
 
 
 if __name__ == '__main__':
