@@ -19,15 +19,19 @@ fc3 (84, 10)
   |    
 Cross Entropy   
 ### optimizer things
-<<<<<<< HEAD
-learning rate: 0.001
-activation: ReLU
-Dropout, BatchNorm
-=======
 learning rate: 0.001   
 activation: ReLU   
-Dropout, BatchNorm   
+Dropout, BatchNorm
 Augment: random horizontal flip
 ### Accuracy on test set
 93.77%
-
+## version 2
+### Model
+Ensemble 10 model in version 1 by incremental their output value
+### optimizer things
+learning rate: 0.001
+activation: ReLU
+Dropout, BatchNorm
+Augment: random horizontal flip
+### Accuracy on test set
+94.27915335463258 %
