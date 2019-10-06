@@ -86,9 +86,12 @@ Cross Entropy
 94.68849840255591 %
 
 ## Usage
+#### Requirements
++ Python 3
++ CUDA (optional)
 #### Install libraries:
 ```
-pip install -r requirements.txt
+pip3 install -r requirements.txt
 ```
 #### Install pytorch-cpu:
 ```
@@ -123,11 +126,22 @@ pip3 install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytor
 |-- train.py
 ```
 #### training
++ Train the model in each version, with number of epochs (Recommend install CUDA)
 ```
-python train.py
+python3 train.py --version $version --epoch $epoch
 ```
-#### test
++ Example:
 ```
-python test.py
+python3 train.py --version 3 --epoch 10
 ```
-
+#### Evaluate
++ Test my trained models in each version
+```
+python test.py --version $version
+```
++ Example:
+```
+python test.py --version 3
+Evaluating...
+Accuracy of the network on 10000 test images: 94.68849840255591 %
+```

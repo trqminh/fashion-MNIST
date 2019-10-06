@@ -5,6 +5,16 @@ from utils import *
 from models import *
 import copy
 import time
+import argparse
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version', type=int, default=3)
+    parser.add_argument('--epoch', type=int, default=50, help='number of epoch')
+
+    args = parser.parse_args()
+    return args
 
 
 def accuracy(output, labels):
@@ -14,6 +24,9 @@ def accuracy(output, labels):
 
 
 def main():
+    # arg
+    args = parse_args()
+
     # aply transforms to return img as tensor type
     train_transform = transforms.Compose([
         transforms.RandomHorizontalFlip(),
@@ -40,9 +53,15 @@ def main():
 
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
-    # model = MyModel(num_classes=num_classes)  # version 1
-    # model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
-    model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version 3
+    # model
+    model = None
+    if args.version == 1:
+        model = MyModel(num_classes=num_classes)  # version 1
+    elif args.version == 2:
+        model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
+    else:
+        model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version 3
+        
     model = model.to(device)
     criterion = nn.CrossEntropyLoss()
     optimizer = torch.optim.Adam(model.parameters(), lr=0.001)
@@ -52,7 +71,7 @@ def main():
     loss_list = []
     acc_list = []
 
-    epochs = 100
+    epochs = args.epoch
     itr = 1
     p_itr = 1000
 

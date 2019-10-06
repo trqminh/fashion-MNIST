@@ -3,6 +3,16 @@ from torchvision import transforms
 from torch.utils.data import DataLoader
 from utils import *
 from models import *
+import argparse
+
+
+
+def parse_args():
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--version', type=int, default=3)
+
+    args = parser.parse_args()
+    return args
 
 
 def accuracy(output, labels):
@@ -12,6 +22,7 @@ def accuracy(output, labels):
 
 
 def main():
+    args = parse_args()
     test_path = './data'
     test_file = 'fashion-mnist_test.csv'
     test_transform = transforms.Compose([
@@ -28,14 +39,22 @@ def main():
     device = 'cuda:0' if torch.cuda.is_available() else 'cpu'
 
     # model
-    # model = MyModel(num_classes=10)  # version 1
-    # model = EnsembleModel(num_classes=num_classes, num=10, device=device)  # version 2
-    model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version3
-    model.load_state_dict(torch.load('./trained_models/version3_model.pth', map_location=device))
+    model = None
+    if args.version == 1:
+        model = MyModel(num_classes=num_classes)  # version 1
+        model.load_state_dict(torch.load('./trained_models/version1_model.pth', map_location=device))
+    elif args.version == 2:
+        model = EnsembleModel(num=10, num_classes=10, device=device)  # version 2
+        model.load_state_dict(torch.load('./trained_models/version2_model.pth', map_location=device))
+    else:
+        model = WideResNet(depth=40, num_classes=num_classes, widen_factor=4)  # version 3
+        model.load_state_dict(torch.load('./trained_models/version3_model.pth', map_location=device))
+
     model = model.to(device)
 
     model.eval()
     test_acc = 0.0
+    print('Evaluating...')
     for samples, labels in test_loader:
         with torch.no_grad():
             samples, labels = samples.to(device), labels.to(device)
