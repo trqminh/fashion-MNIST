@@ -42,7 +42,7 @@ Cross Entropy
 + Dropout, BatchNorm
 + Augment: random horizontal flip
 ### Accuracy on test set
-93.77%
+93.76996805111821 %
 ## version 2
 ### Model
 Ensemble 10 model in version 1 by incremental their output value
@@ -83,7 +83,7 @@ Cross Entropy
 + Dropout, BatchNorm
 + Augment: random horizontal flip
 ### Accuracy on test set
-94.6685303514377 %
+94.68849840255591 %
 
 ## Usage
 #### Install libraries:
@@ -94,12 +94,12 @@ pip install -r requirements.txt
 ```
 pip3 install torch==1.2.0+cpu torchvision==0.4.0+cpu -f https://download.pytorch.org/whl/torch_stable.html
 ```
-#### or install pytorch with cuda (if you have already install CUDA)
+#### or install pytorch with cuda (if you have already installed CUDA)
 ```
 pip3 install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytorch.org/whl/torch_stable.html
 ```
-#### create data/ directory in repository 's root directory, put the csv file in (download from [here](https://www.kaggle.com/zalando-research/fashionmnist))
-#### create trained_models/ directory in repository 's root directory and put the .pth file (download from [here](https://drive.google.com/open?id=1DuFkce3nhPN_43Wegst8Hwhvy1s_CzlO))
+#### create data/ directory in repository 's root directory, put the csv files in it (download from [here](https://www.kaggle.com/zalando-research/fashionmnist))
+#### create trained_models/ directory in repository 's root directory and put the .pth files in it (download from [here](https://drive.google.com/open?id=1YE-am-pfQTdSPncHdbp66DBm2zyauw76))
 #### Directory structure
 ```
 |-- data
