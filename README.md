@@ -89,6 +89,11 @@ Cross Entropy
 #### Requirements
 + Python 3
 + CUDA (optional)
+#### Download repository
+```
+git clone https://github.com/trqminh/fashion-MNIST.git
+cd fashion-MNIST
+```
 #### Install libraries:
 ```
 pip3 install -r requirements.txt
@@ -125,7 +130,7 @@ pip3 install torch==1.2.0+cu92 torchvision==0.4.0+cu92 -f https://download.pytor
 |-- test.py
 |-- train.py
 ```
-#### training
+#### Training
 + Train the model in each version, with number of epochs (Recommend install CUDA)
 ```
 python3 train.py --version $version --epoch $epoch
@@ -137,11 +142,11 @@ python3 train.py --version 3 --epoch 10
 #### Evaluate
 + Test my trained models in each version
 ```
-python test.py --version $version
+python3 test.py --version $version
 ```
 + Example:
 ```
-python test.py --version 3
+python3 test.py --version 3
 Evaluating...
 Accuracy of the network on 10000 test images: 94.68849840255591 %
 ```
